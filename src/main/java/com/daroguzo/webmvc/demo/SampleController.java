@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SampleController {
 
-    @RequestMapping("/events/{id}")
+    @PostMapping("/events")
     @ResponseBody
-    public Event getEvent(@PathVariable Integer id, @MatrixVariable String name){
+    public Event getEvent(@RequestParam String name, @RequestParam Integer limit){
         Event event = new Event();
-        event.setId(1);
-        event.setName("daroguzo");
+        event.setName(name);
+        event.setLimit(limit);
         return event;
     }
 }

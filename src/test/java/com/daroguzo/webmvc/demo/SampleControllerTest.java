@@ -23,10 +23,12 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(get("/events/1;name=daroguzo"))
+        mockMvc.perform(post("/events")
+                    .param("name", "daroguzo")
+                    .param("limit", "5"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id").value(1))
+                .andExpect(jsonPath("name").value("daroguzo"))
         ;
     }
 }
