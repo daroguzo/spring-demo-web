@@ -25,16 +25,15 @@ public class SampleControllerTest {
     public void eventForm() throws Exception{
         mockMvc.perform(get("/events/form"))
                 .andDo(print())
-                .andExpect(view().name("/events/form"))
+                .andExpect(view().name("events/form"))
                 .andExpect(model().attributeExists("event"))
         ;
     }
 
     @Test
-    public void helloTest() throws Exception {
-        mockMvc.perform(post("/events")
-                    .param("name", "daroguzo")
-                    .param("limit", "5"))
+    public void postEvent() throws Exception {
+        mockMvc.perform(post("/events/name/daroguzo")
+                    .param("limit", "-10"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("daroguzo"))
