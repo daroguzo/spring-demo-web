@@ -6,8 +6,8 @@
 </head>
 <body>
 <form action="#" th:action="@{/events/form/limit}" method="post" th:object="${event}">
-    <p th:if="${#fields.hasErrors('name')}" th:errors="*{limit}">Incorrect date</p>
-    Limit: <input type="text" title="name" th:field="*{limit}"/>
+    <p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}">Incorrect date</p>
+    Limit: <input type="text" title="limit" th:field="*{limit}"/>
     <input type="submit" value="Create"/>
 
 

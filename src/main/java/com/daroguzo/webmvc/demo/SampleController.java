@@ -23,7 +23,7 @@ public class SampleController {
     }
 
     @PostMapping("/events/form/name")
-    public String eventsFormNameSubmit(@Valid @ModelAttribute Event event,
+    public String eventsFormNameSubmit(@Validated @ModelAttribute Event event,
                               BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "/events/form-name";
@@ -40,7 +40,7 @@ public class SampleController {
     }
 
     @PostMapping("/events/form/limit")
-    public String eventsFormLimitSubmit(@Valid @ModelAttribute Event event,
+    public String eventsFormLimitSubmit(@Validated @ModelAttribute Event event,
                                        BindingResult bindingResult,
                                        SessionStatus sessionStatus) {
         if(bindingResult.hasErrors()){
