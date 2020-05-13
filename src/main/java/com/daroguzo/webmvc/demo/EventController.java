@@ -19,6 +19,18 @@ import java.util.List;
 @SessionAttributes("event")
 public class EventController {
 
+    @ExceptionHandler({EventException.class, RuntimeException.class})
+    public String eventErrorHandler(RuntimeException exception, Model model){
+        model.addAttribute("message", "runtime error");
+        return "/events/error";
+    }
+
+
+    @GetMapping("/events/error")
+    public String error(Model model){
+        throw new EventException();
+    }
+
     @InitBinder("event")
     public void InitEventBinder(WebDataBinder webDataBinder){
         webDataBinder.setDisallowedFields("id");
