@@ -50,9 +50,10 @@ public class EventControllerTest {
         mockMvc.perform(get("/events/list")
                 .sessionAttr("visitTime", LocalDateTime.now())
                 .flashAttr("newEvent", newEvent))
-                .andDo(print())
-                .andExpect(status().isOk())
-                //.andExpect(xpath("//p").nodeCount(2))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(model().attributeExists("categories"))
+                    //.andExpect(xpath("//p").nodeCount(2))
         ;
     }
 }
