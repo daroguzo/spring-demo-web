@@ -2,25 +2,24 @@ package com.daroguzo.webmvc.demo;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("/api/events")
 public class EventApi {
 
     @PostMapping
-    @ResponseBody
-    public Event createEvent(@RequestBody @Valid Event event,
-                             BindingResult bindingResult){
+    public ResponseEntity<Event> createEvent(@RequestBody @Valid Event event,
+                                      BindingResult bindingResult){
         // save event
-        if(bindingResult.hasErrors()){
-            bindingResult.getAllErrors().forEach(objectError -> {
-                System.out.println(objectError);
-            });
+        if(bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().build();
         }
-        return event;
+        return ResponseEntity.ok(event);
     }
 }
